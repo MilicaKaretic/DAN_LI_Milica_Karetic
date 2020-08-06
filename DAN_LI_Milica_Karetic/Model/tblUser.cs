@@ -21,8 +21,8 @@ namespace DAN_LI_Milica_Karetic.Model
         public string HealthInsuranceNumber { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
-        public int DoctorID { get; set; }
-        public int SickLeaveID { get; set; }
+        public Nullable<int> DoctorID { get; set; }
+        public Nullable<int> SickLeaveID { get; set; }
     
         public virtual tblDoctor tblDoctor { get; set; }
         public virtual tblSickLeave tblSickLeave { get; set; }

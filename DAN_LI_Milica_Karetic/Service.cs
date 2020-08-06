@@ -5,11 +5,13 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace DAN_LI_Milica_Karetic
 {
     class Service
     {
+        Validation v = new Validation();
         /// <summary>
         /// Gets all information about users
         /// </summary>
@@ -142,6 +144,92 @@ namespace DAN_LI_Milica_Karetic
                 Debug.WriteLine("Exception" + ex.Message.ToString());
                 return null;
             }
+        }
+
+
+       /// <summary>
+       /// Register (add) new doctor
+       /// </summary>
+       /// <param name="doctor">Doctor to add</param>
+       /// <returns>Addde doctor</returns>
+        public tblDoctor AddDoctor(tblDoctor doctor)
+        {
+
+            if (v.ValidDoctorInput(doctor))
+            {
+                try
+                {
+                    using (HospitalDBEntities context = new HospitalDBEntities())
+                    {
+                        tblDoctor newDoctor = new tblDoctor();
+                        newDoctor.FirstName = doctor.FirstName;
+                        newDoctor.LastName = doctor.LastName;
+                        newDoctor.Username = doctor.Username;
+                        newDoctor.Password = doctor.Password;
+                        newDoctor.JMBG = doctor.JMBG;
+                        newDoctor.BankAccount = doctor.BankAccount;
+
+                        context.tblDoctors.Add(newDoctor);
+                        context.SaveChanges();
+
+                        doctor.DoctorID = newDoctor.DoctorID;
+
+                        return doctor;
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine("Exception" + ex.Message.ToString());
+                    return null;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Wrong data input. Please provide valid data to register as a doctor.");
+                return null;
+            }
+
+        }
+
+        public tblUser AddUser(tblUser user)
+        {
+
+            if (v.ValidUserInput(user))
+            {
+                try
+                {
+                    using (HospitalDBEntities context = new HospitalDBEntities())
+                    {
+                        tblUser newUser = new tblUser();
+                        newUser.FirstName = user.FirstName;
+                        newUser.LastName = user.LastName;
+                        newUser.Username = user.Username;
+                        newUser.Password = user.Password;
+                        newUser.JMBG = user.JMBG;
+                        newUser.HealthInsuranceNumber = user.HealthInsuranceNumber;
+
+                        context.tblUsers.Add(newUser);
+                        context.SaveChanges();
+
+                        user.DoctorID = newUser.UserID;
+
+                        return user;
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine("Exception" + ex.Message.ToString());
+                    return null;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Wrong data input. Please provide valid data to register as a patient.");
+                return null;
+            }
+
         }
     }
 }

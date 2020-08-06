@@ -17,14 +17,14 @@ using System.Windows.Shapes;
 namespace DAN_LI_Milica_Karetic.View
 {
     /// <summary>
-    /// Interaction logic for AddDoctor.xaml
+    /// Interaction logic for AddUser.xaml
     /// </summary>
-    public partial class AddDoctor : Window
+    public partial class AddUser : Window
     {
-        public AddDoctor()
+        public AddUser()
         {
             InitializeComponent();
-            this.DataContext = new AddDoctorViewModel(this);
+            this.DataContext = new AddUserViewModel(this);
         }
 
         /// <summary>
@@ -38,4 +38,6 @@ namespace DAN_LI_Milica_Karetic.View
             e.Handled = regex.IsMatch(e.Text);
         }
     }
+
+    
 }

@@ -13,7 +13,7 @@ CREATE TABLE tblSickLeave (
 	SickLeaveID INT IDENTITY(1,1) PRIMARY KEY	NOT NULL,
 	SickLeaveDate DATE 							NOT NULL,
 	Reason VARCHAR (200)						NOT NULL,
-	CompanyName VARCHAR (40)					NOT NULL,
+	CompanyName VARCHAR (40),
 	EmergencyCase BIT							NOT NULL,
 );
 
@@ -39,6 +39,6 @@ CREATE TABLE tblUser(
 	HealthInsuranceNumber VARCHAR (40)		NOT NULL,
 	Username VARCHAR (40) UNIQUE			NOT NULL,
 	Password VARCHAR (40)				NOT NULL,
-	DoctorID INT FOREIGN KEY REFERENCES tblDoctor(DoctorID) NOT NULL,
-	SickLeaveID INT FOREIGN KEY REFERENCES tblSickLeave(SickLeaveID) NOT NULL,
+	DoctorID INT FOREIGN KEY REFERENCES tblDoctor(DoctorID),
+	SickLeaveID INT FOREIGN KEY REFERENCES tblSickLeave(SickLeaveID)
 );

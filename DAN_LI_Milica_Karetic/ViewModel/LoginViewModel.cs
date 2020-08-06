@@ -139,7 +139,7 @@ namespace DAN_LI_Milica_Karetic.ViewModel
         {
             try
             {
-                AddPatient addPatient = new AddPatient();
+                AddUser addPatient = new AddUser();
                 addPatient.ShowDialog();
                
             }
