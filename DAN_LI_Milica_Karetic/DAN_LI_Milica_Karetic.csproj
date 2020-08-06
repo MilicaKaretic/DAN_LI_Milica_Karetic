@@ -96,12 +96,17 @@
     <Compile Include="ViewModel\AddDoctorViewModel.cs" />
     <Compile Include="ViewModel\AddUserViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="ViewModel\ChooseDoctorViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
+    <Compile Include="ViewModel\UserViewModel.cs" />
     <Compile Include="View\AddDoctor.xaml.cs">
       <DependentUpon>AddDoctor.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\AddUser.xaml.cs">
       <DependentUpon>AddUser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ChooseDoctor.xaml.cs">
+      <DependentUpon>ChooseDoctor.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Doctor.xaml.cs">
       <DependentUpon>Doctor.xaml</DependentUpon>
@@ -129,6 +134,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\AddUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ChooseDoctor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

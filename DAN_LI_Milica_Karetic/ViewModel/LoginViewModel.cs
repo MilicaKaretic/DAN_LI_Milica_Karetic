@@ -227,6 +227,7 @@ namespace DAN_LI_Milica_Karetic.ViewModel
         {
             string password = (obj as PasswordBox).Password;
             bool found = false;
+            string username = User.Username;
 
             for (int i = 0; i < UserList.Count; i++)
             {
@@ -247,36 +248,54 @@ namespace DAN_LI_Milica_Karetic.ViewModel
                     LabelInfo = "Logged in";
                     found = true;
 
-                    User users = new User();
-                    view.Close();
-                    users.Show();
-                    break;
-                }
-            }
-
-            for (int i = 0; i < DoctorList.Count; i++)
-            {
-                if (Doctor.Username == DoctorList[i].Username && password == DoctorList[i].Password)
-                {
-                    LoggedInDoctor.CurrentDoctor = new tblDoctor
+                    if(DoctorList.Count == 0)
                     {
-                        DoctorID = DoctorList[i].DoctorID,
-                        FirstName = DoctorList[i].FirstName,
-                        LastName = DoctorList[i].LastName,
-                        JMBG = DoctorList[i].JMBG,
-                        BankAccount = DoctorList[i].BankAccount,
-                        Username = DoctorList[i].Username,
-                        Password = DoctorList[i].Password
-                    };
-                    LabelInfo = "Logged in";
-                    found = true;
-
-                    Doctor doctors = new Doctor();
-                    view.Close();
-                    doctors.Show();
+                        MessageBox.Show("There is no available doctors. Please try later.");
+                    }
+                    else if(LoggedInUser.CurrentUser.DoctorID == null)
+                    {
+                        ChooseDoctor chooseDoctor = new ChooseDoctor();
+                        chooseDoctor.Show();
+                        view.Close();
+                    }
+                    else
+                    {
+                        User users = new User();
+                        view.Close();
+                        users.Show();
+                    }
+                    
                     break;
                 }
             }
+
+            if(!found)
+            {
+                for (int i = 0; i < DoctorList.Count; i++)
+                {
+                    if (username == DoctorList[i].Username && password == DoctorList[i].Password)
+                    {
+                        LoggedInDoctor.CurrentDoctor = new tblDoctor
+                        {
+                            DoctorID = DoctorList[i].DoctorID,
+                            FirstName = DoctorList[i].FirstName,
+                            LastName = DoctorList[i].LastName,
+                            JMBG = DoctorList[i].JMBG,
+                            BankAccount = DoctorList[i].BankAccount,
+                            Username = DoctorList[i].Username,
+                            Password = DoctorList[i].Password
+                        };
+                        LabelInfo = "Logged in";
+                        found = true;
+
+                        Doctor doctors = new Doctor();
+                        view.Close();
+                        doctors.Show();
+                        break;
+                    }
+                }
+            }
+           
 
             if (found == false)
             {

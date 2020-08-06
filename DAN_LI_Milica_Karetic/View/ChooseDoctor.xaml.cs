@@ -16,14 +16,14 @@ using System.Windows.Shapes;
 namespace DAN_LI_Milica_Karetic.View
 {
     /// <summary>
-    /// Interaction logic for User.xaml
+    /// Interaction logic for ChooseDoctor.xaml
     /// </summary>
-    public partial class User : Window
+    public partial class ChooseDoctor : Window
     {
-        public User()
+        public ChooseDoctor()
         {
             InitializeComponent();
-            this.DataContext = new UserViewModel(this);
+            this.DataContext = new ChooseDoctorViewModel(this);
         }
     }
 }

@@ -20,7 +20,7 @@ namespace DAN_LI_Milica_Karetic
                 }
                 else
                 {
-                    MessageBox.Show("Bank Account number must have 7 digits.");
+                    MessageBox.Show("Bank Account number must have 10 digits.");
                     return false;
                 }
             }
@@ -41,7 +41,7 @@ namespace DAN_LI_Milica_Karetic
 
         private bool ValidBank(string num)
         {
-            if (num.Length < 7)
+            if (num.Length < 10)
                 return false;
             else return true;
         }

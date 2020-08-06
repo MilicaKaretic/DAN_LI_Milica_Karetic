@@ -79,6 +79,24 @@ namespace DAN_LI_Milica_Karetic
         }
        
 
+        public void ChooseDoctor(tblUser user, int doctorID)
+        {
+
+            try
+            {
+                using (HospitalDBEntities context = new HospitalDBEntities())
+                {
+                    tblUser userToEdit = context.tblUsers.FirstOrDefault(us => us.UserID == user.UserID);
+                    userToEdit.DoctorID = doctorID;
+                    context.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Exception" + ex.Message.ToString());
+            }
+        }
+
         /// <summary>
         /// Gets all information about sick leaves from current logged in doctor
         /// </summary>
