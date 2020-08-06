@@ -1,10 +1,14 @@
-﻿using DAN_LI_Milica_Karetic.Model;
+﻿using DAN_LI_Milica_Karetic.Commands;
+using DAN_LI_Milica_Karetic.Model;
 using DAN_LI_Milica_Karetic.View;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Input;
 
 namespace DAN_LI_Milica_Karetic.ViewModel
 {
@@ -20,60 +24,140 @@ namespace DAN_LI_Milica_Karetic.ViewModel
         /// <param name="addUserOpen">opends the add user window</param>
         public UserViewModel(User addUserOpen)
         {
-            user = new tblUser();
+            sickLeave = new tblSickLeave();
             userView = addUserOpen;
-            UserList = service.GetAllUsers().ToList();
+            SickLeaveList = service.GetAllSickLeaves().ToList();
         }
         #endregion
 
 
 
         #region Property
-        private tblUser user;
-        public tblUser User
+        private tblSickLeave sickLeave;
+        public tblSickLeave SickLeave
         {
             get
             {
-                return user;
+                return sickLeave;
             }
             set
             {
-                user = value;
-                OnPropertyChanged("User");
+                sickLeave = value;
+                OnPropertyChanged("SickLeave");
             }
         }
 
-        private List<tblUser> userList;
-        public List<tblUser> UserList
+        private List<tblSickLeave> sickLeaveList;
+        public List<tblSickLeave> SickLeaveList
         {
             get
             {
-                return userList;
+                return sickLeaveList;
             }
             set
             {
-                userList = value;
-                OnPropertyChanged("UserList");
+                sickLeaveList = value;
+                OnPropertyChanged("SickLeaveList");
+            }
+        }
+
+       
+        #endregion
+
+        #region Commands
+        /// <summary>
+        /// Command that tries to save the new employee
+        /// </summary>
+        private ICommand save;
+        public ICommand Save
+        {
+            get
+            {
+                if (save == null)
+                {
+                    save = new RelayCommand(param => SaveExecute(), param => this.CanSaveExecute);
+                }
+                return save;
             }
         }
 
         /// <summary>
-        /// Cheks if its possible to execute the add and edit commands
+        /// Tries the execute the save command
         /// </summary>
-        private bool isUpdateUser;
-        public bool IsUpdateUser
+        private void SaveExecute()
+        {
+            try
+            {
+                AddUser adminView = new AddUser();
+                if (service.AddSickLeave(SickLeave) != null)
+                {
+
+                    MessageBox.Show("Added sick leave. Click to ok to exit.");
+                    Login log = new Login();
+                    userView.Close();
+                    log.Show();
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Exception" + ex.Message.ToString());
+            }
+        }
+
+        /// <summary>
+        /// Checks if its possible to save the employee
+        /// </summary>
+        protected bool CanSaveExecute
         {
             get
             {
-                return isUpdateUser;
-            }
-            set
-            {
-                isUpdateUser = value;
+                return true;
             }
         }
+
+        /// <summary>
+        /// Command that closes the add user or edit user window
+        /// </summary>
+        private ICommand cancel;
+        public ICommand Cancel
+        {
+            get
+            {
+                if (cancel == null)
+                {
+                    cancel = new RelayCommand(param => CancelExecute(), param => CanCancelExecute());
+                }
+                return cancel;
+            }
+        }
+
+        /// <summary>
+        /// Executes the close command
+        /// </summary>
+        private void CancelExecute()
+        {
+            try
+            {
+                Login log = new Login();
+                userView.Close();
+                log.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        /// <summary>
+        /// Checks if its possible to execute the close command
+        /// </summary>
+        /// <returns>true</returns>
+        private bool CanCancelExecute()
+        {
+            return true;
+        }
         #endregion
-
-
     }
 }

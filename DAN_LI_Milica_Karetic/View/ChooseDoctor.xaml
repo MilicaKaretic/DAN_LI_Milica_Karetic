@@ -47,9 +47,9 @@
                       Foreground="Black"
                       FontWeight="Bold">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Student Name"
+                    <DataGridTextColumn Header="Doctor Name"
                                         Binding="{Binding FirstName}" />
-                    <DataGridTextColumn Header="Student Surname"
+                    <DataGridTextColumn Header="Doctor Surname"
                                         Binding="{Binding LastName}" />
                     
                 </DataGrid.Columns>

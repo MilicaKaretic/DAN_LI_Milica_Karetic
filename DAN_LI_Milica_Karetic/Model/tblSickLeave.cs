@@ -24,7 +24,7 @@ namespace DAN_LI_Milica_Karetic.Model
         public System.DateTime SickLeaveDate { get; set; }
         public string Reason { get; set; }
         public string CompanyName { get; set; }
-        public bool EmergencyCase { get; set; }
+        public string EmergencyCase { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblUser> tblUsers { get; set; }

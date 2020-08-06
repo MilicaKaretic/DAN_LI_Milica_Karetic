@@ -25,7 +25,7 @@
           <Property Name="SickLeaveDate" Type="date" Nullable="false" />
           <Property Name="Reason" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="CompanyName" Type="varchar" MaxLength="40" />
-          <Property Name="EmergencyCase" Type="bit" Nullable="false" />
+          <Property Name="EmergencyCase" Type="varchar" MaxLength="5" Nullable="false" />
         </EntityType>
         <EntityType Name="tblUser">
           <Key>
@@ -41,7 +41,7 @@
           <Property Name="DoctorID" Type="int" />
           <Property Name="SickLeaveID" Type="int" />
         </EntityType>
-        <Association Name="FK__tblUser__DoctorI__52593CB8">
+        <Association Name="FK__tblUser__DoctorI__628FA481">
           <End Role="tblDoctor" Type="Self.tblDoctor" Multiplicity="0..1" />
           <End Role="tblUser" Type="Self.tblUser" Multiplicity="*" />
           <ReferentialConstraint>
@@ -53,7 +53,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblUser__SickLea__534D60F1">
+        <Association Name="FK__tblUser__SickLea__6383C8BA">
           <End Role="tblSickLeave" Type="Self.tblSickLeave" Multiplicity="0..1" />
           <End Role="tblUser" Type="Self.tblUser" Multiplicity="*" />
           <ReferentialConstraint>
@@ -69,11 +69,11 @@
           <EntitySet Name="tblDoctor" EntityType="Self.tblDoctor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblSickLeave" EntityType="Self.tblSickLeave" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblUser" EntityType="Self.tblUser" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__tblUser__DoctorI__52593CB8" Association="Self.FK__tblUser__DoctorI__52593CB8">
+          <AssociationSet Name="FK__tblUser__DoctorI__628FA481" Association="Self.FK__tblUser__DoctorI__628FA481">
             <End Role="tblDoctor" EntitySet="tblDoctor" />
             <End Role="tblUser" EntitySet="tblUser" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblUser__SickLea__534D60F1" Association="Self.FK__tblUser__SickLea__534D60F1">
+          <AssociationSet Name="FK__tblUser__SickLea__6383C8BA" Association="Self.FK__tblUser__SickLea__6383C8BA">
             <End Role="tblSickLeave" EntitySet="tblSickLeave" />
             <End Role="tblUser" EntitySet="tblUser" />
           </AssociationSet>
@@ -94,7 +94,7 @@
           <Property Name="BankAccount" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Username" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="tblUsers" Relationship="Self.FK__tblUser__DoctorI__52593CB8" FromRole="tblDoctor" ToRole="tblUser" />
+          <NavigationProperty Name="tblUsers" Relationship="Self.FK__tblUser__DoctorI__628FA481" FromRole="tblDoctor" ToRole="tblUser" />
         </EntityType>
         <EntityType Name="tblSickLeave">
           <Key>
@@ -104,8 +104,8 @@
           <Property Name="SickLeaveDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Reason" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CompanyName" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
-          <Property Name="EmergencyCase" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="tblUsers" Relationship="Self.FK__tblUser__SickLea__534D60F1" FromRole="tblSickLeave" ToRole="tblUser" />
+          <Property Name="EmergencyCase" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tblUsers" Relationship="Self.FK__tblUser__SickLea__6383C8BA" FromRole="tblSickLeave" ToRole="tblUser" />
         </EntityType>
         <EntityType Name="tblUser">
           <Key>
@@ -120,10 +120,10 @@
           <Property Name="Password" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="DoctorID" Type="Int32" />
           <Property Name="SickLeaveID" Type="Int32" />
-          <NavigationProperty Name="tblDoctor" Relationship="Self.FK__tblUser__DoctorI__52593CB8" FromRole="tblUser" ToRole="tblDoctor" />
-          <NavigationProperty Name="tblSickLeave" Relationship="Self.FK__tblUser__SickLea__534D60F1" FromRole="tblUser" ToRole="tblSickLeave" />
+          <NavigationProperty Name="tblDoctor" Relationship="Self.FK__tblUser__DoctorI__628FA481" FromRole="tblUser" ToRole="tblDoctor" />
+          <NavigationProperty Name="tblSickLeave" Relationship="Self.FK__tblUser__SickLea__6383C8BA" FromRole="tblUser" ToRole="tblSickLeave" />
         </EntityType>
-        <Association Name="FK__tblUser__DoctorI__52593CB8">
+        <Association Name="FK__tblUser__DoctorI__628FA481">
           <End Role="tblDoctor" Type="Self.tblDoctor" Multiplicity="0..1" />
           <End Role="tblUser" Type="Self.tblUser" Multiplicity="*" />
           <ReferentialConstraint>
@@ -135,7 +135,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblUser__SickLea__534D60F1">
+        <Association Name="FK__tblUser__SickLea__6383C8BA">
           <End Role="tblSickLeave" Type="Self.tblSickLeave" Multiplicity="0..1" />
           <End Role="tblUser" Type="Self.tblUser" Multiplicity="*" />
           <ReferentialConstraint>
@@ -151,11 +151,11 @@
           <EntitySet Name="tblDoctors" EntityType="Self.tblDoctor" />
           <EntitySet Name="tblSickLeaves" EntityType="Self.tblSickLeave" />
           <EntitySet Name="tblUsers" EntityType="Self.tblUser" />
-          <AssociationSet Name="FK__tblUser__DoctorI__52593CB8" Association="Self.FK__tblUser__DoctorI__52593CB8">
+          <AssociationSet Name="FK__tblUser__DoctorI__628FA481" Association="Self.FK__tblUser__DoctorI__628FA481">
             <End Role="tblDoctor" EntitySet="tblDoctors" />
             <End Role="tblUser" EntitySet="tblUsers" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblUser__SickLea__534D60F1" Association="Self.FK__tblUser__SickLea__534D60F1">
+          <AssociationSet Name="FK__tblUser__SickLea__6383C8BA" Association="Self.FK__tblUser__SickLea__6383C8BA">
             <End Role="tblSickLeave" EntitySet="tblSickLeaves" />
             <End Role="tblUser" EntitySet="tblUsers" />
           </AssociationSet>

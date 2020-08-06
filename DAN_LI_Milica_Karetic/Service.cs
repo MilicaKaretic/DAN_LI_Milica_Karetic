@@ -77,6 +77,35 @@ namespace DAN_LI_Milica_Karetic
                 return null;
             }
         }
+
+        public tblSickLeave AddSickLeave(tblSickLeave tblSickLeave)
+        {
+            try
+            {
+                using (HospitalDBEntities context = new HospitalDBEntities())
+                {
+                    tblSickLeave newSickLeave = new tblSickLeave();
+                    newSickLeave.SickLeaveDate = tblSickLeave.SickLeaveDate;
+                    newSickLeave.Reason = tblSickLeave.Reason;
+                    newSickLeave.CompanyName = tblSickLeave.CompanyName;
+                    newSickLeave.EmergencyCase = tblSickLeave.EmergencyCase;
+
+
+                    context.tblSickLeaves.Add(newSickLeave);
+                    context.SaveChanges();
+
+                    tblSickLeave.SickLeaveID = newSickLeave.SickLeaveID;
+
+                    return tblSickLeave;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Exception" + ex.Message.ToString());
+                return null;
+            }
+        }
        
 
         public void ChooseDoctor(tblUser user, int doctorID)
