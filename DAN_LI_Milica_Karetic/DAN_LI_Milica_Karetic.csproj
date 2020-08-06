@@ -64,6 +64,41 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="Model\HospitalDBModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HospitalDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\LoggedInDoctor.cs" />
+    <Compile Include="Model\LoggedInUser.cs" />
+    <Compile Include="Model\tblDoctor.cs">
+      <DependentUpon>HospitalDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\tblSickLeave.cs">
+      <DependentUpon>HospitalDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\tblUser.cs">
+      <DependentUpon>HospitalDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Service.cs" />
+    <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="ViewModel\LoginViewModel.cs" />
+    <Compile Include="View\AddDoctor.xaml.cs">
+      <DependentUpon>AddDoctor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AddPatient.xaml.cs">
+      <DependentUpon>AddPatient.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Doctor.xaml.cs">
+      <DependentUpon>Doctor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Login.xaml.cs">
+      <DependentUpon>Login.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\User.xaml.cs">
+      <DependentUpon>User.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -72,12 +107,12 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="HospitalDBModel.Context.cs">
+    <Compile Include="Model\HospitalDBModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>HospitalDBModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="HospitalDBModel.Designer.cs">
+    <Compile Include="Model\HospitalDBModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>HospitalDBModel.edmx</DependentUpon>
@@ -86,6 +121,26 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\AddDoctor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AddPatient.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Doctor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\User.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -105,11 +160,11 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="HospitalDBModel.edmx">
+    <EntityDeploy Include="Model\HospitalDBModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>HospitalDBModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="HospitalDBModel.edmx.diagram">
+    <None Include="Model\HospitalDBModel.edmx.diagram">
       <DependentUpon>HospitalDBModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
@@ -122,16 +177,21 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="HospitalDBModel.Context.tt">
+    <Content Include="DDL\HospitalDB.sql" />
+    <Content Include="Model\HospitalDBModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>HospitalDBModel.Context.cs</LastGenOutput>
+      <DependentUpon>HospitalDBModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Model\HospitalDBModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HospitalDBModel.edmx</DependentUpon>
+      <LastGenOutput>HospitalDBModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
