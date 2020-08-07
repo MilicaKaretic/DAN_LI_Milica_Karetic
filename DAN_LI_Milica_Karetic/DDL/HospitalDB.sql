@@ -14,7 +14,7 @@ CREATE TABLE tblSickLeave (
 	SickLeaveDate DATE 							NOT NULL,
 	Reason VARCHAR (200)						NOT NULL,
 	CompanyName VARCHAR (40),
-	EmergencyCase BIT							NOT NULL,
+	EmergencyCase varchar(5)							NOT NULL,
 );
 
 
